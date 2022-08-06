@@ -43,8 +43,8 @@ export const {
     },
   },
   media: {
-    M: '(min-width: 375px)',
-    D: '(min-width: 1440px)',
+    M: '(min-width: 320px)',
+    D: '(min-width: 900px)',
   },
 })
 
