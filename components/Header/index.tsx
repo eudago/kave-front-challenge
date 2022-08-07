@@ -1,7 +1,12 @@
 import { Flex } from "@components/Flex";
+import Link from "next/link";
 import { styled } from "stitches.config";
 import FavoriteIcon from "./FavoriteIcon";
 import KaveLogo from "./KaveLogo";
+
+const LogoContainer = styled("div", {
+    cursor: "pointer",
+});
 
 const HeaderStyled = styled('header', {
     padding: '$3',
@@ -12,7 +17,11 @@ export default function Header() {
     return (
         <HeaderStyled>
             <Flex align="center" justify="between">
-                <KaveLogo />
+                <Link href="/">
+                    <LogoContainer>
+                        <KaveLogo />  
+                    </LogoContainer>              
+                </Link>
                 <FavoriteIcon />
             </Flex>
         </HeaderStyled>

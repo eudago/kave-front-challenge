@@ -73,5 +73,9 @@ export const globalStyles = globalCss({
     padding: 0,
     background: '$loContrast',
     fontFamily: '$poppins',
-  }
+    height: '100%',
+    '& > div#__next': {
+      height: '100%',
+    }
+  },
 });
