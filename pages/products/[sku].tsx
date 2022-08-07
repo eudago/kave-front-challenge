@@ -99,7 +99,10 @@ export async function getStaticPaths() {
   const response = await fetch(process.env.API_URL!)
   const products: ApiResults<ProductType> = await response.json()
   
-  const paths = products.results.map(product => ({ params: { sku: product.productSku.toString() } }));
+  const paths = products.results
+    .slice(0, parseInt(process.env.MAX_PRODUCTS!))
+    .map(product => ({ params: { sku: product.productSku.toString() } }));
+
   return {
     paths,
     fallback: false,
@@ -109,7 +112,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: any) {
   const response = await fetch(process.env.API_URL!)
   const products: ApiResults<ProductType> = await response.json()
-  const product = products.results.find(product => product.productSku === params.sku)
+  const product = products.results
+    .slice(0, parseInt(process.env.MAX_PRODUCTS!))
+    .find(product => product.productSku === params.sku)
 
   return {
     props: {

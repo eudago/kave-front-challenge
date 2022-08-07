@@ -45,7 +45,7 @@ export async function getStaticProps() {
   const products: ApiResults<Array<Product>> = await response.json()
 
   return { props: { 
-    products: products.results,
+    products: products.results.slice(0, parseInt(process.env.MAX_PRODUCTS!)),
   }};
 }
 
