@@ -1,9 +1,16 @@
+import Container from '@components/Container'
+import ProductsGrid from '@components/PorductsGrid'
 import SubHeader from '@components/SubHeader'
 import H1 from '@components/Typography/H1'
-import type { NextPage } from 'next'
+import { ApiResults } from '@lib/types/api'
+import { Product } from '@lib/types/product'
 import Head from 'next/head'
 
-const Home: NextPage = () => {
+interface HomeProps {
+  products: Array<Product>
+}
+
+const Home = ({products} : HomeProps) => {
   return (
     <div>
       <Head>
@@ -16,8 +23,19 @@ const Home: NextPage = () => {
         <H1>Cuando la realidad supera la ficción.</H1>
         <H1>Trucos para estar en casa</H1>
       </SubHeader>
+
+      <Container css={{marginY: '$6'}}>
+        <ProductsGrid products={products} />
+      </Container>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const response = await fetch(process.env.API_URL!)
+  const products: ApiResults<Product> = await response.json()
+
+  return { props: { products: products.results.slice(0, 9) } };
 }
 
 export default Home
