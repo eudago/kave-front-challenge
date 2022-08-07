@@ -29,6 +29,8 @@ export const {
       4: '20px',
       5: '25px',
       6: '35px',
+      'header': '30px',
+      'headerPadding': '15px',
     },
     fontSizes: {
       1: '12px',

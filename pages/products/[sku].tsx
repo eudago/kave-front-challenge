@@ -1,5 +1,7 @@
+import FavoriteButton from "@components/FavoriteButton"
 import { Flex } from "@components/Flex"
 import { Img } from "@components/Img"
+import { useFavorite } from "@lib/hooks/useFavorite"
 import { ApiResults } from "@lib/types/api"
 import { Product as ProductType } from "@lib/types/product"
 import { styled } from "stitches.config"
@@ -21,7 +23,7 @@ const ProductDescription = styled('div', {
 })
 
 const ProductContent = styled('div', {
-  height: '100%',
+  height: 'calc(100% - (1px + $header + $headerPadding * 2))',
   display: 'flex',
   '@M': {
     flexDirection: 'column',
@@ -57,16 +59,28 @@ const ProductNameText = styled('h4', {
   margin: '0',
 })
 
+const FavoriteButtonContainer = styled('div', {
+  position: 'absolute',
+  right: '15px',
+  top: '15px',
+  cursor: 'pointer',
+  zIndex: '1',
+})
+
 interface ProductProps {
     product: ProductType
 }
 
 const Product = ({product} : ProductProps) => {
   const { productImageUrl, productName, productPrice, productCategoryHierarchy, productCollection } = product;
+  const [favorite, changeFavorite] = useFavorite(product);
 
   return (
     <ProductContent>
       <ProductImageContent>
+        <FavoriteButtonContainer>
+          <FavoriteButton favorite={favorite} changeFavorite={changeFavorite} />
+        </FavoriteButtonContainer>
         <Img src={productImageUrl} alt={productName} layout="fill" />
       </ProductImageContent>
       <ProductDescription>

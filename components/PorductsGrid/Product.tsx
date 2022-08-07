@@ -1,8 +1,17 @@
+import FavoriteButton from "@components/FavoriteButton";
 import { Img } from "@components/Img";
+import { useFavorite } from "@lib/hooks/useFavorite";
 import { Product as ProductType } from "@lib/types/product";
-import Image, { ImageProps } from "next/image";
+import { ImageProps } from "next/image";
 import Link from "next/link";
 import { styled } from "stitches.config";
+
+const FavoriteButtonContainer = styled('div', {
+    position: 'absolute',
+    right: '15px',
+    top: '15px',
+    cursor: 'pointer',
+})
 
 const ProductContent = styled("div", {
     display: "flex",
@@ -35,9 +44,13 @@ interface ProductProps {
 
 export default function Product({product}: ProductProps) {
     const { productImageUrl, productName, productPrice, productSku } = product;
+    const [favorite, changeFavorite] = useFavorite(product);
 
     return <ProductContent>
         <ProductImage src={productImageUrl} layout="fill" alt={productName} />
+        <FavoriteButtonContainer>
+            <FavoriteButton favorite={favorite} changeFavorite={changeFavorite} />
+        </FavoriteButtonContainer>
         <Link href={`/products/${productSku}`}>
             <ProductName>{productName}</ProductName>        
         </Link>
