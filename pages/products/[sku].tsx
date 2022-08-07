@@ -85,7 +85,7 @@ export async function getStaticPaths() {
   const response = await fetch(process.env.API_URL!)
   const products: ApiResults<ProductType> = await response.json()
   
-  const paths = products.results.slice(0, 20).map(product => ({ params: { sku: product.productSku.toString() } }));
+  const paths = products.results.map(product => ({ params: { sku: product.productSku.toString() } }));
   return {
     paths,
     fallback: false,

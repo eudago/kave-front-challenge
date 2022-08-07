@@ -1,10 +1,13 @@
+import { Button } from '@components/Button'
 import Container from '@components/Container'
+import { Flex } from '@components/Flex'
 import ProductsGrid from '@components/PorductsGrid'
 import SubHeader from '@components/SubHeader'
 import H1 from '@components/Typography/H1'
 import { ApiResults } from '@lib/types/api'
 import { Product } from '@lib/types/product'
 import Head from 'next/head'
+import Link from 'next/link'
 
 interface HomeProps {
   products: Array<Product>
@@ -24,9 +27,15 @@ const Home = ({products} : HomeProps) => {
         <H1>Trucos para estar en casa</H1>
       </SubHeader>
 
-      <Container css={{marginY: '$6'}}>
+      <Container>
         <ProductsGrid products={products} />
       </Container>
+
+      <Flex justify="center" css={{marginY: '$6'}}>
+        <Link href="/products">
+          <Button> VER TODOS LOS PRODUCTOS </Button>        
+        </Link>
+      </Flex>
     </div>
   )
 }
