@@ -1,9 +1,11 @@
 import { Button } from '@components/Button'
+import Categories from '@components/Categories'
 import Container from '@components/Container'
 import { Flex } from '@components/Flex'
 import ProductsGrid from '@components/PorductsGrid'
 import SubHeader from '@components/SubHeader'
 import H1 from '@components/Typography/H1'
+import Title from '@components/Typography/Title'
 import { ApiResults } from '@lib/types/api'
 import { Product } from '@lib/types/product'
 import Head from 'next/head'
@@ -28,6 +30,11 @@ const Home = ({products} : HomeProps) => {
       </SubHeader>
 
       <Container>
+        <Flex justify="center" css={{marginY: '$6'}}>
+          <Title>Inspírate</Title>
+        </Flex>
+        <Categories />
+
         <ProductsGrid products={products} />
       </Container>
 
