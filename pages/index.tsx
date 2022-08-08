@@ -36,13 +36,13 @@ const Home = ({products} : HomeProps) => {
         <Categories />
 
         <ProductsGrid products={products} />
-      </Container>
 
-      <Flex justify="center" css={{marginY: '$6'}}>
-        <Link href="/products">
-          <Button> VER TODOS LOS PRODUCTOS </Button>        
-        </Link>
-      </Flex>
+        <Flex justify="center" css={{marginY: '$6'}}>
+          <Link href="/products">
+            <Button> VER TODOS LOS PRODUCTOS </Button>        
+          </Link>
+        </Flex>
+      </Container>
     </div>
   )
 }
